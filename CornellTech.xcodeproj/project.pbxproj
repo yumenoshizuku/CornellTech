@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		509527FA19FCB47900380001 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 509527F919FCB47900380001 /* main.m */; };
+		509527FD19FCB47900380001 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 509527FC19FCB47900380001 /* AppDelegate.m */; };
+		5095280019FCB47900380001 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 509527FF19FCB47900380001 /* ViewController.m */; };
+		5095280319FCB47900380001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5095280119FCB47900380001 /* Main.storyboard */; };
+		5095280519FCB47900380001 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5095280419FCB47900380001 /* Images.xcassets */; };
+		5095280819FCB47900380001 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5095280619FCB47900380001 /* LaunchScreen.xib */; };
+		5095281419FCB47A00380001 /* CornellTechTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5095281319FCB47A00380001 /* CornellTechTests.m */; };
+		50A34A8A1A03233B008D3E27 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34A871A03233B008D3E27 /* GoogleOpenSource.framework */; };
+		50A34A8B1A03233B008D3E27 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50A34A881A03233B008D3E27 /* GooglePlus.bundle */; };
+		50A34A8C1A03233B008D3E27 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34A891A03233B008D3E27 /* GooglePlus.framework */; };
+		50A34A9A1A032CBA008D3E27 /* libEstimoteSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34A991A032CBA008D3E27 /* libEstimoteSDK.a */; };
+		50A34A9C1A032CCA008D3E27 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34A9B1A032CCA008D3E27 /* CoreBluetooth.framework */; };
+		50A34A9E1A032CD2008D3E27 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34A9D1A032CD2008D3E27 /* CoreLocation.framework */; };
+		50A34AA01A032CDA008D3E27 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34A9F1A032CDA008D3E27 /* SystemConfiguration.framework */; };
+		50A34AA21A032D32008D3E27 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AA11A032D32008D3E27 /* AddressBook.framework */; };
+		50A34AA41A032D39008D3E27 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AA31A032D39008D3E27 /* AssetsLibrary.framework */; };
+		50A34AA61A032D48008D3E27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AA51A032D48008D3E27 /* Foundation.framework */; };
+		50A34AA81A032D4F008D3E27 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AA71A032D4F008D3E27 /* CoreMotion.framework */; };
+		50A34AAA1A032D55008D3E27 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AA91A032D55008D3E27 /* CoreGraphics.framework */; };
+		50A34AAC1A032D5D008D3E27 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AAB1A032D5D008D3E27 /* CoreText.framework */; };
+		50A34AAE1A032D64008D3E27 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AAD1A032D64008D3E27 /* MediaPlayer.framework */; };
+		50A34AB01A032D6A008D3E27 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AAF1A032D6A008D3E27 /* Security.framework */; };
+		50A34AB91A032EEA008D3E27 /* ESTBeaconTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */; };
+		50A34AC31A032F73008D3E27 /* ESTNotificationDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AC11A032F73008D3E27 /* ESTNotificationDemoVC.m */; };
+		50A34AC41A032F73008D3E27 /* ESTNotificationDemoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50A34AC21A032F73008D3E27 /* ESTNotificationDemoVC.xib */; };
+		50A34AC61A03303C008D3E27 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AC51A03303C008D3E27 /* UIKit.framework */; };
+		50A34AC91A0333E3008D3E27 /* campus_night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50A34AC71A0333E3008D3E27 /* campus_night.jpg */; };
+		50A34ACA1A0333E3008D3E27 /* landing.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A34AC81A0333E3008D3E27 /* landing.png */; };
+		50A34AD31A036F08008D3E27 /* RoomLaterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AD21A036F08008D3E27 /* RoomLaterTableViewController.m */; };
+		50A34AD61A036F41008D3E27 /* RoomNowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5095280E19FCB47A00380001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 509527EC19FCB47900380001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 509527F319FCB47900380001;
+			remoteInfo = CornellTech;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		509527F419FCB47900380001 /* CornellTech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CornellTech.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		509527F819FCB47900380001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		509527F919FCB47900380001 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		509527FB19FCB47900380001 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		509527FC19FCB47900380001 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		509527FE19FCB47900380001 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		509527FF19FCB47900380001 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5095280219FCB47900380001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5095280419FCB47900380001 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5095280719FCB47900380001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		5095280D19FCB47A00380001 /* CornellTechTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CornellTechTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5095281219FCB47A00380001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5095281319FCB47A00380001 /* CornellTechTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CornellTechTests.m; sourceTree = "<group>"; };
+		50A34A871A03233B008D3E27 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
+		50A34A881A03233B008D3E27 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
+		50A34A891A03233B008D3E27 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
+		50A34A991A032CBA008D3E27 /* libEstimoteSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEstimoteSDK.a; path = EstimoteSDK/libEstimoteSDK.a; sourceTree = "<group>"; };
+		50A34A9B1A032CCA008D3E27 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		50A34A9D1A032CD2008D3E27 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		50A34A9F1A032CDA008D3E27 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		50A34AA11A032D32008D3E27 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		50A34AA31A032D39008D3E27 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		50A34AA51A032D48008D3E27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		50A34AA71A032D4F008D3E27 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		50A34AA91A032D55008D3E27 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		50A34AAB1A032D5D008D3E27 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		50A34AAD1A032D64008D3E27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		50A34AAF1A032D6A008D3E27 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		50A34AB71A032EEA008D3E27 /* ESTBeaconTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTBeaconTableVC.h; sourceTree = "<group>"; };
+		50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTBeaconTableVC.m; sourceTree = "<group>"; };
+		50A34AC01A032F73008D3E27 /* ESTNotificationDemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTNotificationDemoVC.h; sourceTree = "<group>"; };
+		50A34AC11A032F73008D3E27 /* ESTNotificationDemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTNotificationDemoVC.m; sourceTree = "<group>"; };
+		50A34AC21A032F73008D3E27 /* ESTNotificationDemoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTNotificationDemoVC.xib; sourceTree = "<group>"; };
+		50A34AC51A03303C008D3E27 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		50A34AC71A0333E3008D3E27 /* campus_night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = campus_night.jpg; sourceTree = "<group>"; };
+		50A34AC81A0333E3008D3E27 /* landing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landing.png; sourceTree = "<group>"; };
+		50A34AD11A036F08008D3E27 /* RoomLaterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomLaterTableViewController.h; sourceTree = "<group>"; };
+		50A34AD21A036F08008D3E27 /* RoomLaterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomLaterTableViewController.m; sourceTree = "<group>"; };
+		50A34AD41A036F41008D3E27 /* RoomNowTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomNowTableViewController.h; sourceTree = "<group>"; };
+		50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomNowTableViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		509527F119FCB47900380001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50A34AC61A03303C008D3E27 /* UIKit.framework in Frameworks */,
+				50A34AB01A032D6A008D3E27 /* Security.framework in Frameworks */,
+				50A34AAE1A032D64008D3E27 /* MediaPlayer.framework in Frameworks */,
+				50A34AAC1A032D5D008D3E27 /* CoreText.framework in Frameworks */,
+				50A34AAA1A032D55008D3E27 /* CoreGraphics.framework in Frameworks */,
+				50A34AA81A032D4F008D3E27 /* CoreMotion.framework in Frameworks */,
+				50A34AA61A032D48008D3E27 /* Foundation.framework in Frameworks */,
+				50A34AA41A032D39008D3E27 /* AssetsLibrary.framework in Frameworks */,
+				50A34AA21A032D32008D3E27 /* AddressBook.framework in Frameworks */,
+				50A34AA01A032CDA008D3E27 /* SystemConfiguration.framework in Frameworks */,
+				50A34A9E1A032CD2008D3E27 /* CoreLocation.framework in Frameworks */,
+				50A34A9C1A032CCA008D3E27 /* CoreBluetooth.framework in Frameworks */,
+				50A34A9A1A032CBA008D3E27 /* libEstimoteSDK.a in Frameworks */,
+				50A34A8A1A03233B008D3E27 /* GoogleOpenSource.framework in Frameworks */,
+				50A34A8C1A03233B008D3E27 /* GooglePlus.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5095280A19FCB47A00380001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		509527EB19FCB47900380001 = {
+			isa = PBXGroup;
+			children = (
+				50A34AC71A0333E3008D3E27 /* campus_night.jpg */,
+				50A34AC81A0333E3008D3E27 /* landing.png */,
+				5095281D19FCC3B000380001 /* Frameworks */,
+				509527F619FCB47900380001 /* CornellTech */,
+				5095281019FCB47A00380001 /* CornellTechTests */,
+				509527F519FCB47900380001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		509527F519FCB47900380001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				509527F419FCB47900380001 /* CornellTech.app */,
+				5095280D19FCB47A00380001 /* CornellTechTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		509527F619FCB47900380001 /* CornellTech */ = {
+			isa = PBXGroup;
+			children = (
+				509527FB19FCB47900380001 /* AppDelegate.h */,
+				509527FC19FCB47900380001 /* AppDelegate.m */,
+				509527FE19FCB47900380001 /* ViewController.h */,
+				509527FF19FCB47900380001 /* ViewController.m */,
+				50A34AD11A036F08008D3E27 /* RoomLaterTableViewController.h */,
+				50A34AD21A036F08008D3E27 /* RoomLaterTableViewController.m */,
+				50A34AD41A036F41008D3E27 /* RoomNowTableViewController.h */,
+				50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */,
+				5095280119FCB47900380001 /* Main.storyboard */,
+				5095280419FCB47900380001 /* Images.xcassets */,
+				5095280619FCB47900380001 /* LaunchScreen.xib */,
+				509527F719FCB47900380001 /* Supporting Files */,
+				50A34AB71A032EEA008D3E27 /* ESTBeaconTableVC.h */,
+				50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */,
+				50A34AC01A032F73008D3E27 /* ESTNotificationDemoVC.h */,
+				50A34AC11A032F73008D3E27 /* ESTNotificationDemoVC.m */,
+				50A34AC21A032F73008D3E27 /* ESTNotificationDemoVC.xib */,
+			);
+			path = CornellTech;
+			sourceTree = "<group>";
+		};
+		509527F719FCB47900380001 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				509527F819FCB47900380001 /* Info.plist */,
+				509527F919FCB47900380001 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5095281019FCB47A00380001 /* CornellTechTests */ = {
+			isa = PBXGroup;
+			children = (
+				5095281319FCB47A00380001 /* CornellTechTests.m */,
+				5095281119FCB47A00380001 /* Supporting Files */,
+			);
+			path = CornellTechTests;
+			sourceTree = "<group>";
+		};
+		5095281119FCB47A00380001 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5095281219FCB47A00380001 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5095281D19FCC3B000380001 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50A34AC51A03303C008D3E27 /* UIKit.framework */,
+				50A34AAF1A032D6A008D3E27 /* Security.framework */,
+				50A34AAD1A032D64008D3E27 /* MediaPlayer.framework */,
+				50A34AAB1A032D5D008D3E27 /* CoreText.framework */,
+				50A34AA91A032D55008D3E27 /* CoreGraphics.framework */,
+				50A34AA71A032D4F008D3E27 /* CoreMotion.framework */,
+				50A34AA51A032D48008D3E27 /* Foundation.framework */,
+				50A34AA31A032D39008D3E27 /* AssetsLibrary.framework */,
+				50A34AA11A032D32008D3E27 /* AddressBook.framework */,
+				50A34A9F1A032CDA008D3E27 /* SystemConfiguration.framework */,
+				50A34A9D1A032CD2008D3E27 /* CoreLocation.framework */,
+				50A34A9B1A032CCA008D3E27 /* CoreBluetooth.framework */,
+				50A34A991A032CBA008D3E27 /* libEstimoteSDK.a */,
+				50A34A871A03233B008D3E27 /* GoogleOpenSource.framework */,
+				50A34A881A03233B008D3E27 /* GooglePlus.bundle */,
+				50A34A891A03233B008D3E27 /* GooglePlus.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		509527F319FCB47900380001 /* CornellTech */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5095281719FCB47A00380001 /* Build configuration list for PBXNativeTarget "CornellTech" */;
+			buildPhases = (
+				509527F019FCB47900380001 /* Sources */,
+				509527F119FCB47900380001 /* Frameworks */,
+				509527F219FCB47900380001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CornellTech;
+			productName = CornellTech;
+			productReference = 509527F419FCB47900380001 /* CornellTech.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5095280C19FCB47A00380001 /* CornellTechTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5095281A19FCB47A00380001 /* Build configuration list for PBXNativeTarget "CornellTechTests" */;
+			buildPhases = (
+				5095280919FCB47A00380001 /* Sources */,
+				5095280A19FCB47A00380001 /* Frameworks */,
+				5095280B19FCB47A00380001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5095280F19FCB47A00380001 /* PBXTargetDependency */,
+			);
+			name = CornellTechTests;
+			productName = CornellTechTests;
+			productReference = 5095280D19FCB47A00380001 /* CornellTechTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		509527EC19FCB47900380001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Fanxing Meng";
+				TargetAttributes = {
+					509527F319FCB47900380001 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					5095280C19FCB47A00380001 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 509527F319FCB47900380001;
+					};
+				};
+			};
+			buildConfigurationList = 509527EF19FCB47900380001 /* Build configuration list for PBXProject "CornellTech" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 509527EB19FCB47900380001;
+			productRefGroup = 509527F519FCB47900380001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				509527F319FCB47900380001 /* CornellTech */,
+				5095280C19FCB47A00380001 /* CornellTechTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		509527F219FCB47900380001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5095280319FCB47900380001 /* Main.storyboard in Resources */,
+				50A34AC41A032F73008D3E27 /* ESTNotificationDemoVC.xib in Resources */,
+				5095280819FCB47900380001 /* LaunchScreen.xib in Resources */,
+				50A34AC91A0333E3008D3E27 /* campus_night.jpg in Resources */,
+				50A34A8B1A03233B008D3E27 /* GooglePlus.bundle in Resources */,
+				50A34ACA1A0333E3008D3E27 /* landing.png in Resources */,
+				5095280519FCB47900380001 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5095280B19FCB47A00380001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		509527F019FCB47900380001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5095280019FCB47900380001 /* ViewController.m in Sources */,
+				50A34AD31A036F08008D3E27 /* RoomLaterTableViewController.m in Sources */,
+				50A34AC31A032F73008D3E27 /* ESTNotificationDemoVC.m in Sources */,
+				509527FD19FCB47900380001 /* AppDelegate.m in Sources */,
+				509527FA19FCB47900380001 /* main.m in Sources */,
+				50A34AB91A032EEA008D3E27 /* ESTBeaconTableVC.m in Sources */,
+				50A34AD61A036F41008D3E27 /* RoomNowTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5095280919FCB47A00380001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5095281419FCB47A00380001 /* CornellTechTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5095280F19FCB47A00380001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 509527F319FCB47900380001 /* CornellTech */;
+			targetProxy = 5095280E19FCB47A00380001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5095280119FCB47900380001 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5095280219FCB47900380001 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5095280619FCB47900380001 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5095280719FCB47900380001 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5095281519FCB47A00380001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5095281619FCB47A00380001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5095281819FCB47A00380001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/albert/Documents/google-plus-ios-sdk-1.7.1",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/EstimoteSDK/Headers",
+				);
+				INFOPLIST_FILE = CornellTech/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EstimoteSDK",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5095281919FCB47A00380001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/albert/Documents/google-plus-ios-sdk-1.7.1",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/EstimoteSDK/Headers",
+				);
+				INFOPLIST_FILE = CornellTech/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EstimoteSDK",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5095281B19FCB47A00380001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CornellTechTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CornellTech.app/CornellTech";
+			};
+			name = Debug;
+		};
+		5095281C19FCB47A00380001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CornellTechTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CornellTech.app/CornellTech";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		509527EF19FCB47900380001 /* Build configuration list for PBXProject "CornellTech" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5095281519FCB47A00380001 /* Debug */,
+				5095281619FCB47A00380001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5095281719FCB47A00380001 /* Build configuration list for PBXNativeTarget "CornellTech" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5095281819FCB47A00380001 /* Debug */,
+				5095281919FCB47A00380001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5095281A19FCB47A00380001 /* Build configuration list for PBXNativeTarget "CornellTechTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5095281B19FCB47A00380001 /* Debug */,
+				5095281C19FCB47A00380001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 509527EC19FCB47900380001 /* Project object */;
+}
