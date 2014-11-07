@@ -141,12 +141,12 @@
             NSString *roomNumber;
             float radius = -1.0f;
             switch (beacon.major.intValue) {
-                case 30100:
+                case 30200:
                     roomName = @"Studio";
                     roomNumber = @"301";
                     radius = 8.0f;
                     break;
-                case 30101:
+                case 30201:
                     roomName = @"Big Red";
                     roomNumber = @"301";
                     radius = 4.0f;
@@ -254,14 +254,27 @@
     
     NSString *roomName;
     switch (beacon.major.intValue) {
-        case 10301:
+            
+        case 30200:
+            roomName = @"Studio";
+            break;
+        case 30201:
             roomName = @"Big Red";
             break;
-        case 10302:
-            roomName = @"FozziePooh";
+        case 30203:
+            roomName = @"Mum";
             break;
-        case 10303:
-            roomName = @"Touchdown";
+        case 30204:
+            roomName = @"Paddington";
+            break;
+        case 30205:
+            roomName = @"Fozzie";
+            break;
+        case 30206:
+            roomName = @"Baron";
+            break;
+        case 30207:
+            roomName = @"Bear Hug";
             break;
         default:
             break;
