@@ -30,8 +30,6 @@
 		50A34AAE1A032D64008D3E27 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AAD1A032D64008D3E27 /* MediaPlayer.framework */; };
 		50A34AB01A032D6A008D3E27 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AAF1A032D6A008D3E27 /* Security.framework */; };
 		50A34AB91A032EEA008D3E27 /* ESTBeaconTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */; };
-		50A34AC31A032F73008D3E27 /* ESTNotificationDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AC11A032F73008D3E27 /* ESTNotificationDemoVC.m */; };
-		50A34AC41A032F73008D3E27 /* ESTNotificationDemoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50A34AC21A032F73008D3E27 /* ESTNotificationDemoVC.xib */; };
 		50A34AC61A03303C008D3E27 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A34AC51A03303C008D3E27 /* UIKit.framework */; };
 		50A34AC91A0333E3008D3E27 /* campus_night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50A34AC71A0333E3008D3E27 /* campus_night.jpg */; };
 		50A34ACA1A0333E3008D3E27 /* landing.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A34AC81A0333E3008D3E27 /* landing.png */; };
@@ -80,9 +78,6 @@
 		50A34AAF1A032D6A008D3E27 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		50A34AB71A032EEA008D3E27 /* ESTBeaconTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTBeaconTableVC.h; sourceTree = "<group>"; };
 		50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTBeaconTableVC.m; sourceTree = "<group>"; };
-		50A34AC01A032F73008D3E27 /* ESTNotificationDemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTNotificationDemoVC.h; sourceTree = "<group>"; };
-		50A34AC11A032F73008D3E27 /* ESTNotificationDemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTNotificationDemoVC.m; sourceTree = "<group>"; };
-		50A34AC21A032F73008D3E27 /* ESTNotificationDemoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTNotificationDemoVC.xib; sourceTree = "<group>"; };
 		50A34AC51A03303C008D3E27 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		50A34AC71A0333E3008D3E27 /* campus_night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = campus_night.jpg; sourceTree = "<group>"; };
 		50A34AC81A0333E3008D3E27 /* landing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landing.png; sourceTree = "<group>"; };
@@ -157,15 +152,12 @@
 				50A34AD21A036F08008D3E27 /* RoomLaterTableViewController.m */,
 				50A34AD41A036F41008D3E27 /* RoomNowTableViewController.h */,
 				50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */,
+				50A34AB71A032EEA008D3E27 /* ESTBeaconTableVC.h */,
+				50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */,
 				5095280119FCB47900380001 /* Main.storyboard */,
 				5095280419FCB47900380001 /* Images.xcassets */,
 				5095280619FCB47900380001 /* LaunchScreen.xib */,
 				509527F719FCB47900380001 /* Supporting Files */,
-				50A34AB71A032EEA008D3E27 /* ESTBeaconTableVC.h */,
-				50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */,
-				50A34AC01A032F73008D3E27 /* ESTNotificationDemoVC.h */,
-				50A34AC11A032F73008D3E27 /* ESTNotificationDemoVC.m */,
-				50A34AC21A032F73008D3E27 /* ESTNotificationDemoVC.xib */,
 			);
 			path = CornellTech;
 			sourceTree = "<group>";
@@ -300,7 +292,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5095280319FCB47900380001 /* Main.storyboard in Resources */,
-				50A34AC41A032F73008D3E27 /* ESTNotificationDemoVC.xib in Resources */,
 				5095280819FCB47900380001 /* LaunchScreen.xib in Resources */,
 				50A34AC91A0333E3008D3E27 /* campus_night.jpg in Resources */,
 				50A34A8B1A03233B008D3E27 /* GooglePlus.bundle in Resources */,
@@ -325,7 +316,6 @@
 			files = (
 				5095280019FCB47900380001 /* ViewController.m in Sources */,
 				50A34AD31A036F08008D3E27 /* RoomLaterTableViewController.m in Sources */,
-				50A34AC31A032F73008D3E27 /* ESTNotificationDemoVC.m in Sources */,
 				509527FD19FCB47900380001 /* AppDelegate.m in Sources */,
 				509527FA19FCB47900380001 /* main.m in Sources */,
 				50A34AB91A032EEA008D3E27 /* ESTBeaconTableVC.m in Sources */,

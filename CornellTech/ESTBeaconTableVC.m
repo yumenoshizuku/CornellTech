@@ -16,8 +16,28 @@
 @property (nonatomic, strong) ESTBeaconManager *beaconManager;
 @property (nonatomic, strong) ESTBeaconRegion *region;
 @property (nonatomic, strong) NSArray *beaconsArray;
+@property (nonatomic, strong) NSMutableArray *historyQueue;
+@property (nonatomic, strong) NSNumber *lastSent;
 
 @end
+
+static const double CONF_DIST_STUDIO = 4.0;
+static const double CONF_DIST_BIGRED = 4.0;
+static const double CONF_DIST_MUM = 1.5;
+static const double CONF_DIST_PADDINGTON = 1.5;
+static const double CONF_DIST_FOZZIE = 5.0;
+static const double CONF_DIST_BARON = 1.5;
+static const double CONF_DIST_BEARHUG = 1.5;
+
+static const double AMB_DIST_STUDIO = 6.0;
+static const double AMB_DIST_BIGRED = 6.0;
+static const double AMB_DIST_MUM = 2.5;
+static const double AMB_DIST_PADDINGTON = 2.5;
+static const double AMB_DIST_FOZZIE = 6.0;
+static const double AMB_DIST_BARON = 2.5;
+static const double AMB_DIST_BEARHUG = 2.5;
+
+
 
 @interface ESTTableViewCell : UITableViewCell
 
@@ -45,6 +65,8 @@
     self.title = @"Select beacon";
 
     [self.tableView registerClass:[ESTTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
+    self.historyQueue = [[NSMutableArray alloc] init];
+    self.lastSent = [[NSNumber alloc] initWithInt:0];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -127,100 +149,149 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 #pragma mark - ESTBeaconManager delegate
 
 - (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"name"] length] != 0) {
-        NSString *name = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
-        NSString *netid = [[NSUserDefaults standardUserDefaults] objectForKey:@"netid"];
+    NSString *netid = [[NSUserDefaults standardUserDefaults] objectForKey:@"netid"];
+    if ([netid length] != 0) {
+        
+        int numConfBeacons = 0;
+        int numAmbBeacons = 0;
+        int numFarBeacons = 0;
+        NSMutableArray *confBeacons = [[NSMutableArray alloc] init];
+        NSMutableArray *ambBeacons = [[NSMutableArray alloc] init];
+        NSMutableArray *farBeacons = [[NSMutableArray alloc] init];
+        
         self.beaconsArray = beacons;
         [self.tableView reloadData];
         for (ESTBeacon *beacon in beacons) {
-            NSString *roomName;
-            NSString *roomNumber;
-            float radius = -1.0f;
+            NSDictionary *thisBeacon;
+            double confDist = -1.0;
+            double ambDist = -1.0;
+            double dist = [beacon.distance floatValue];
             switch (beacon.major.intValue) {
                 case 30200:
-                    roomName = @"Studio";
-                    roomNumber = @"301";
-                    radius = 8.0f;
+                    confDist = CONF_DIST_STUDIO;
+                    ambDist = AMB_DIST_STUDIO;
                     break;
                 case 30201:
-                    roomName = @"Big Red";
-                    roomNumber = @"301";
-                    radius = 4.0f;
+                    confDist = CONF_DIST_BIGRED;
+                    ambDist = AMB_DIST_BIGRED;
                     break;
                 case 30203:
-                    roomName = @"Mum";
-                    roomNumber = @"303";
-                    radius = 2.0f;
+                    confDist = CONF_DIST_MUM;
+                    ambDist = AMB_DIST_MUM;
                     break;
                 case 30204:
-                    roomName = @"Paddington";
-                    roomNumber = @"304";
-                    radius = 2.0f;
+                    confDist = CONF_DIST_PADDINGTON;
+                    ambDist = AMB_DIST_PADDINGTON;
                     break;
                 case 30205:
-                    roomName = @"Fozzie";
-                    roomNumber = @"305";
-                    radius = 5.0f;
+                    confDist = CONF_DIST_FOZZIE;
+                    ambDist = AMB_DIST_FOZZIE;
                     break;
                 case 30206:
-                    roomName = @"Baron";
-                    roomNumber = @"306";
-                    radius = 2.0f;
+                    confDist = CONF_DIST_BARON;
+                    ambDist = AMB_DIST_BARON;
                     break;
                 case 30207:
-                    roomName = @"Bear Hug";
-                    roomNumber = @"307";
-                    radius = 2.0f;
+                    confDist = CONF_DIST_BEARHUG;
+                    ambDist = AMB_DIST_BEARHUG;
                     break;
                 default:
                     break;
             }
-            if (radius > 0 && [beacon.distance floatValue] < radius) {
-                NSString *bodyData = [NSString stringWithFormat:@"name=%@&deviceId=%@&roomId=%@&action=1", name, netid, roomNumber];
-                NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.tejakondapalli.com/smartroom/room.php"]];
-                NSLog(bodyData);
-                [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-                
-                // Designate the request a POST request and specify its body data
-                [postRequest setHTTPMethod:@"POST"];
-                [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
-                
-                NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-                
-                [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-                 {
-                     NSLog(@"POST IN REGION CALLBACK");
-                 }];
-                
-                
-            } else if (radius > 0) {
-                NSString *bodyData = [NSString stringWithFormat:@"name=%@&deviceId=%@&roomId=%@&action=0", name, netid, roomNumber];
-                NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.tejakondapalli.com/smartroom/room.php"]];
-                
-                // Set the request's content type to application/x-www-form-urlencoded
-                [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-                
-                // Designate the request a POST request and specify its body data
-                [postRequest setHTTPMethod:@"POST"];
-                [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
-                
-                NSLog(@"%@", postRequest);
-                NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-                
-                [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-                 {
-                     NSLog(@"POST OUTSIDE REGION CALLBACK");
-                 }];
-                
+            if (dist > 0 && dist < confDist) {
+                numConfBeacons += 1;
+                thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist/confDist], @"distRatio", nil];
+                [confBeacons addObject:thisBeacon];
+            } else if (dist >= confDist && dist < ambDist) {
+                numAmbBeacons += 1;
+                thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist/confDist], @"distRatio", nil];
+                [ambBeacons addObject:thisBeacon];
+            } else if (dist >= ambDist) {
+                numFarBeacons += 1;
+                thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist], @"dist", nil];
+                [farBeacons addObject:thisBeacon];
+            }
+        }
+        NSSortDescriptor *distDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distRatio" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:distDescriptor];
+        NSArray *sortedArray;
+        if (numConfBeacons == 1) {
+            [self addToQueue:[[confBeacons objectAtIndex:0] objectForKey:@"beacon"] toQueue:self.historyQueue];
+        } else if (numConfBeacons > 1) {
+            sortedArray = [confBeacons sortedArrayUsingDescriptors:sortDescriptors];
+            [self addToQueue:[[confBeacons objectAtIndex:0] objectForKey:@"beacon"] toQueue:self.historyQueue];
+        } else if (numConfBeacons == 0) {
+            if (numAmbBeacons == 1) {
+                [self addToQueue:[[ambBeacons objectAtIndex:0] objectForKey:@"beacon"] toQueue:self.historyQueue];
+            } else if (numAmbBeacons > 1) {
+                sortedArray = [ambBeacons sortedArrayUsingDescriptors:sortDescriptors];
+                [self addToQueue:[[ambBeacons objectAtIndex:0] objectForKey:@"beacon"] toQueue:self.historyQueue];
+            } else if (numAmbBeacons == 0) {
+                if (numFarBeacons == 1) {
+                    [self addToQueue:[[farBeacons objectAtIndex:0] objectForKey:@"beacon"] toQueue:self.historyQueue];
+                } else if (numFarBeacons > 1) {
+                    distDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dist" ascending:YES];
+                    sortDescriptors = [NSArray arrayWithObject:distDescriptor];
+                    sortedArray = [farBeacons sortedArrayUsingDescriptors:sortDescriptors];
+                    [self addToQueue:[[farBeacons objectAtIndex:0] objectForKey:@"beacon"] toQueue:self.historyQueue];
+                }
             }
         }
         
         
     }
+}
+
+
+- (void) addToQueue: (ESTBeacon*) beacon toQueue: (NSMutableArray *) queue
+{
+    [queue addObject:beacon.major];
+    if ([queue count] > 10) {
+        [queue removeObjectAtIndex:0];
+    }
+    NSCountedSet *bag = [[NSCountedSet alloc] initWithArray:queue];
+    NSLog(@"%@", bag);
+    NSNumber *mostOccurring = [[NSNumber alloc] init];
+    NSUInteger highest = 0;
+    for (NSNumber *s in bag)
+    {
+        if ([bag countForObject:s] > highest)
+        {
+            highest = [bag countForObject:s];
+            mostOccurring = s;
+        }
+    }
+    if (![mostOccurring isEqualToNumber:self.lastSent]) {
+        [self updateLocation:[[NSUserDefaults standardUserDefaults] objectForKey:@"name"] andNetid:[[NSUserDefaults standardUserDefaults] objectForKey:@"netid"] andMajor:mostOccurring.intValue];
+        self.lastSent = mostOccurring;
+        NSLog(@"updated to %d", self.lastSent.intValue);
+    }
+}
+
+- (void) updateLocation: (NSString *) name andNetid: (NSString *) netid andMajor: (int) major
+{
+    NSString *bodyData = [NSString stringWithFormat:@"name=%@&deviceId=%@&roomId=%d", name, netid, major];
+    NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.tejakondapalli.com/smartroom/room.php"]];
+    NSLog(bodyData);
+    [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    // Designate the request a POST request and specify its body data
+    [postRequest setHTTPMethod:@"POST"];
+    [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         //NSLog(@"POST IN REGION CALLBACK");
+     }];
+    
+    
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
