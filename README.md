@@ -4,5 +4,5 @@ App for Cornell Tech's smart campus
 
 Functionalities
 -----------
-Book rooms
-Report location
+* Book rooms
+* Report location
