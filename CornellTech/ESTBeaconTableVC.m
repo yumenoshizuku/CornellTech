@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSArray *beaconsArray;
 @property (nonatomic, strong) NSMutableArray *historyQueue;
 @property (nonatomic, strong) NSNumber *lastSent;
+@property (strong, nonatomic) NSString *csrf;
 
 @end
 
@@ -28,6 +29,7 @@ static const double CONF_DIST_PADDINGTON = 1.5;
 static const double CONF_DIST_FOZZIE = 5.0;
 static const double CONF_DIST_BARON = 1.5;
 static const double CONF_DIST_BEARHUG = 1.5;
+static const double CONF_DIST_TOUCHDOWN = 4.0;
 
 static const double AMB_DIST_STUDIO = 6.0;
 static const double AMB_DIST_BIGRED = 6.0;
@@ -36,6 +38,7 @@ static const double AMB_DIST_PADDINGTON = 2.5;
 static const double AMB_DIST_FOZZIE = 6.0;
 static const double AMB_DIST_BARON = 2.5;
 static const double AMB_DIST_BEARHUG = 2.5;
+static const double AMB_DIST_TOUCHDOWN = 6.0;
 
 
 
@@ -61,12 +64,14 @@ static const double AMB_DIST_BEARHUG = 2.5;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 
     self.title = @"Select beacon";
 
     [self.tableView registerClass:[ESTTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
     self.historyQueue = [[NSMutableArray alloc] init];
     self.lastSent = [[NSNumber alloc] initWithInt:0];
+    self.csrf = [self CSRFTokenFromURL:@"http://"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -91,6 +96,23 @@ static const double AMB_DIST_BEARHUG = 2.5;
 - (void)beaconManager:(ESTBeaconManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     [self startRangingBeacons];
+}
+
+- (NSString *)CSRFTokenFromURL:(NSString *)url
+{
+    // Pass in any url with a CSRF protected form
+    NSURL *baseURL = [NSURL URLWithString:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:baseURL];
+    [request setHTTPMethod:@"GET"];
+    NSURLResponse *response;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:baseURL];
+    for (NSHTTPCookie *cookie in cookies)
+    {
+        if ([[cookie name] isEqualToString:@"csrftoken"])
+            return [cookie value];
+    }
+    return nil;
 }
 
 -(void)startRangingBeacons
@@ -200,6 +222,10 @@ static const double AMB_DIST_BEARHUG = 2.5;
                     confDist = CONF_DIST_BEARHUG;
                     ambDist = AMB_DIST_BEARHUG;
                     break;
+                case 30217:
+                    confDist = CONF_DIST_TOUCHDOWN;
+                    ambDist = AMB_DIST_TOUCHDOWN;
+                    break;
                 default:
                     break;
             }
@@ -275,7 +301,7 @@ static const double AMB_DIST_BEARHUG = 2.5;
 
 - (void) updateLocation: (NSString *) name andNetid: (NSString *) netid andMajor: (int) major
 {
-    NSString *bodyData = [NSString stringWithFormat:@"name=%@&deviceId=%@&roomId=%d", name, netid, major];
+    NSString *bodyData = [NSString stringWithFormat:@"name=%@&deviceId=%@&roomId=%d&csrfmiddlewaretoken=%@", name, netid, major, self.csrf];
     NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.tejakondapalli.com/smartroom/room.php"]];
     NSLog(bodyData);
     [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
