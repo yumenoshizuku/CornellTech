@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ESTBeacon.h"
+#import "ESTBeaconManager.h"
 
 typedef enum : int
 {
@@ -19,6 +20,8 @@ typedef enum : int
 /*
  * Lists all Estimote beacons in range and returns selected beacon.
  */
-@interface ESTBeaconTableVC : UITableViewController
+@interface ESTBeaconTableVC : UITableViewController <ESTBeaconManagerDelegate>
+
+- (void)startRangingBeaconsBG:(void (^)(UIBackgroundFetchResult))completionHandler;;
 
 @end

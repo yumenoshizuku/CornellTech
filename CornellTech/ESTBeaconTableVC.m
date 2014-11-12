@@ -10,6 +10,7 @@
 #import "ESTBeaconManager.h"
 #import "ESTViewController.h"
 #import "ViewController.h"
+#import "Counter.h"
 
 @interface ESTBeaconTableVC () <ESTBeaconManagerDelegate>
 
@@ -19,8 +20,10 @@
 @property (nonatomic, strong) NSMutableArray *historyQueue;
 @property (nonatomic, strong) NSNumber *lastSent;
 @property (strong, nonatomic) NSString *csrf;
+@property (nonatomic, strong) Counter *count;
 
 @end
+
 
 static const double CONF_DIST_STUDIO = 4.0;
 static const double CONF_DIST_BIGRED = 4.0;
@@ -66,12 +69,12 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
     [super viewDidLoad];
     
 
-    self.title = @"Select beacon";
+    self.title = @"Beacons";
 
     [self.tableView registerClass:[ESTTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
     self.historyQueue = [[NSMutableArray alloc] init];
     self.lastSent = [[NSNumber alloc] initWithInt:0];
-    self.csrf = [self CSRFTokenFromURL:@"http://"];
+    self.csrf = [self CSRFTokenFromURL:@"http://TODO"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -113,6 +116,23 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
             return [cookie value];
     }
     return nil;
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    
+    if ([keyPath isEqualToString:@"count"]) {
+        NSLog(@"The name of the child was changed.");
+        NSLog(@"%@", change);
+    }
+    
+}
+
+-(void)startRangingBeaconsBG:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    self.count = [[Counter alloc] init];
+    [self.count addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    [self startRangingBeacons];
+    
 }
 
 -(void)startRangingBeacons
@@ -162,8 +182,8 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
     /*
      *Stops ranging after exiting the view.
      */
-    [self.beaconManager stopRangingBeaconsInRegion:self.region];
-    [self.beaconManager stopEstimoteBeaconDiscovery];
+    //[self.beaconManager stopRangingBeaconsInRegion:self.region];
+    //[self.beaconManager stopEstimoteBeaconDiscovery];
 }
 
 - (void)dismiss
@@ -277,6 +297,8 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
 - (void) addToQueue: (ESTBeacon*) beacon toQueue: (NSMutableArray *) queue
 {
     [queue addObject:beacon.major];
+    [self.count setValue:[NSNumber numberWithInteger:[[self.count valueForKey:@"count"] integerValue] + 1] forKey:@"count"];
+
     if ([queue count] > 10) {
         [queue removeObjectAtIndex:0];
     }
@@ -301,8 +323,9 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
 
 - (void) updateLocation: (NSString *) name andNetid: (NSString *) netid andMajor: (int) major
 {
-    NSString *bodyData = [NSString stringWithFormat:@"name=%@&deviceId=%@&roomId=%d&csrfmiddlewaretoken=%@", name, netid, major, self.csrf];
-    NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.tejakondapalli.com/smartroom/room.php"]];
+    NSString *bodyData = [NSString stringWithFormat:@"name=%@&netId=%@&major=%d&minor=1", name, netid, major];
+    //&csrfmiddlewaretoken=%@
+    NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://54.200.176.236/room_booking/occupy"]];
     NSLog(bodyData);
     [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
@@ -376,6 +399,7 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
         default:
             break;
     }
+    //http://54.200.176.236/room_booking/json/room/30205
     cell.textLabel.text = [NSString stringWithFormat:@"Room: %@, Beacon: %@", roomName, beacon.minor];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Distance: %.2f m", [beacon.distance floatValue]];
 

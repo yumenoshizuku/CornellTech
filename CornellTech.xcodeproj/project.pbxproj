@@ -35,6 +35,7 @@
 		50A34ACA1A0333E3008D3E27 /* landing.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A34AC81A0333E3008D3E27 /* landing.png */; };
 		50A34AD31A036F08008D3E27 /* RoomLaterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AD21A036F08008D3E27 /* RoomLaterTableViewController.m */; };
 		50A34AD61A036F41008D3E27 /* RoomNowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */; };
+		50B10F391A133D38003188A8 /* Counter.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B10F381A133D38003188A8 /* Counter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		50A34AD21A036F08008D3E27 /* RoomLaterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomLaterTableViewController.m; sourceTree = "<group>"; };
 		50A34AD41A036F41008D3E27 /* RoomNowTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomNowTableViewController.h; sourceTree = "<group>"; };
 		50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomNowTableViewController.m; sourceTree = "<group>"; };
+		50B10F371A133D38003188A8 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
+		50B10F381A133D38003188A8 /* Counter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Counter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 				50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */,
 				50A34AB71A032EEA008D3E27 /* ESTBeaconTableVC.h */,
 				50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */,
+				50B10F371A133D38003188A8 /* Counter.h */,
+				50B10F381A133D38003188A8 /* Counter.m */,
 				5095280119FCB47900380001 /* Main.storyboard */,
 				5095280419FCB47900380001 /* Images.xcassets */,
 				5095280619FCB47900380001 /* LaunchScreen.xib */,
@@ -260,6 +265,7 @@
 				TargetAttributes = {
 					509527F319FCB47900380001 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 9DNZ9F4LDW;
 					};
 					5095280C19FCB47A00380001 = {
 						CreatedOnToolsVersion = 6.1;
@@ -319,6 +325,7 @@
 				509527FD19FCB47900380001 /* AppDelegate.m in Sources */,
 				509527FA19FCB47900380001 /* main.m in Sources */,
 				50A34AB91A032EEA008D3E27 /* ESTBeaconTableVC.m in Sources */,
+				50B10F391A133D38003188A8 /* Counter.m in Sources */,
 				50A34AD61A036F41008D3E27 /* RoomNowTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +459,7 @@
 					"$(SRCROOT)/EstimoteSDK/Headers",
 				);
 				INFOPLIST_FILE = CornellTech/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -477,6 +485,7 @@
 					"$(SRCROOT)/EstimoteSDK/Headers",
 				);
 				INFOPLIST_FILE = CornellTech/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
