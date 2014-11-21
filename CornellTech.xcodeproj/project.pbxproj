@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502344DF1A1F03E5002C3FFD /* BackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 502344DE1A1F03E5002C3FFD /* BackgroundTask.m */; };
+		502344E51A1F2014002C3FFD /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502344E41A1F2014002C3FFD /* WebViewController.m */; };
 		509527FA19FCB47900380001 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 509527F919FCB47900380001 /* main.m */; };
 		509527FD19FCB47900380001 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 509527FC19FCB47900380001 /* AppDelegate.m */; };
 		5095280019FCB47900380001 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 509527FF19FCB47900380001 /* ViewController.m */; };
@@ -35,7 +37,6 @@
 		50A34ACA1A0333E3008D3E27 /* landing.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A34AC81A0333E3008D3E27 /* landing.png */; };
 		50A34AD31A036F08008D3E27 /* RoomLaterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AD21A036F08008D3E27 /* RoomLaterTableViewController.m */; };
 		50A34AD61A036F41008D3E27 /* RoomNowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */; };
-		50B10F391A133D38003188A8 /* Counter.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B10F381A133D38003188A8 /* Counter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		502344DD1A1F03E5002C3FFD /* BackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTask.h; sourceTree = "<group>"; };
+		502344DE1A1F03E5002C3FFD /* BackgroundTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTask.m; sourceTree = "<group>"; };
+		502344E31A1F2014002C3FFD /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		502344E41A1F2014002C3FFD /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		509527F419FCB47900380001 /* CornellTech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CornellTech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509527F819FCB47900380001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		509527F919FCB47900380001 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,8 +91,6 @@
 		50A34AD21A036F08008D3E27 /* RoomLaterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomLaterTableViewController.m; sourceTree = "<group>"; };
 		50A34AD41A036F41008D3E27 /* RoomNowTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomNowTableViewController.h; sourceTree = "<group>"; };
 		50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomNowTableViewController.m; sourceTree = "<group>"; };
-		50B10F371A133D38003188A8 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
-		50B10F381A133D38003188A8 /* Counter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Counter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +160,10 @@
 				50A34AD51A036F41008D3E27 /* RoomNowTableViewController.m */,
 				50A34AB71A032EEA008D3E27 /* ESTBeaconTableVC.h */,
 				50A34AB81A032EEA008D3E27 /* ESTBeaconTableVC.m */,
-				50B10F371A133D38003188A8 /* Counter.h */,
-				50B10F381A133D38003188A8 /* Counter.m */,
+				502344DD1A1F03E5002C3FFD /* BackgroundTask.h */,
+				502344DE1A1F03E5002C3FFD /* BackgroundTask.m */,
+				502344E31A1F2014002C3FFD /* WebViewController.h */,
+				502344E41A1F2014002C3FFD /* WebViewController.m */,
 				5095280119FCB47900380001 /* Main.storyboard */,
 				5095280419FCB47900380001 /* Images.xcassets */,
 				5095280619FCB47900380001 /* LaunchScreen.xib */,
@@ -323,10 +328,11 @@
 				5095280019FCB47900380001 /* ViewController.m in Sources */,
 				50A34AD31A036F08008D3E27 /* RoomLaterTableViewController.m in Sources */,
 				509527FD19FCB47900380001 /* AppDelegate.m in Sources */,
+				502344E51A1F2014002C3FFD /* WebViewController.m in Sources */,
 				509527FA19FCB47900380001 /* main.m in Sources */,
 				50A34AB91A032EEA008D3E27 /* ESTBeaconTableVC.m in Sources */,
-				50B10F391A133D38003188A8 /* Counter.m in Sources */,
 				50A34AD61A036F41008D3E27 /* RoomNowTableViewController.m in Sources */,
+				502344DF1A1F03E5002C3FFD /* BackgroundTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

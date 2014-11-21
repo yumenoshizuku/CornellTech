@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="91W-OU-R7t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="91W-OU-R7t">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -301,7 +301,8 @@
                                         <include reference="hET-gk-bkB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="177" y="117" width="46" height="30"/>
                                     <mask key="constraints">
                                         <include reference="e86-RV-MgV"/>
                                     </mask>
@@ -315,8 +316,23 @@
                                 <state key="normal" title="Beacons">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="112" y="247" width="176" height="30"/>
+                                </variation>
                                 <connections>
                                     <segue destination="PiU-CB-5Sy" kind="show" id="yFw-Mz-JT2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2z-6L-xd5">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Map">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="185" y="329" width="31" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="o40-Pw-mng" kind="show" id="nh7-Qi-mLr"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -332,6 +348,9 @@
                             <constraint firstItem="x2E-Mk-n2b" firstAttribute="leading" secondItem="txu-Sd-t6S" secondAttribute="leadingMargin" constant="96" id="y1I-Lc-ksY"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="F2z-6L-xd5"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="WZF-HD-LzK"/>
                                 <exclude reference="tpp-nF-VeY"/>
@@ -349,6 +368,9 @@
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="F2z-6L-xd5"/>
+                            </mask>
                             <mask key="constraints">
                                 <include reference="tpp-nF-VeY"/>
                                 <include reference="bkl-ab-L39"/>
@@ -361,6 +383,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2z-Xr-cty" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-243.75" y="423.5915492957746"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="lUL-uL-3QT">
+            <objects>
+                <viewController id="o40-Pw-mng" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7bt-2F-m21"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Pc-49-GP8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ugS-ll-xdU">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bVF-84-6e5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YCg-jG-MES" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-919.5" y="1163"/>
         </scene>
         <!--Beacon TableVC-->
         <scene sceneID="Jfr-Zk-wt6">

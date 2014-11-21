@@ -10,37 +10,42 @@
 #import "ESTBeaconManager.h"
 #import "ESTViewController.h"
 #import "ViewController.h"
-#import "Counter.h"
+#import "BackgroundTask.h"
 
 @interface ESTBeaconTableVC () <ESTBeaconManagerDelegate>
 
 @property (nonatomic, strong) ESTBeaconManager *beaconManager;
 @property (nonatomic, strong) ESTBeaconRegion *region;
+@property (nonatomic, strong) ESTBeacon *nullBeacon;
 @property (nonatomic, strong) NSArray *beaconsArray;
 @property (nonatomic, strong) NSMutableArray *historyQueue;
 @property (nonatomic, strong) NSNumber *lastSent;
 @property (strong, nonatomic) NSString *csrf;
-@property (nonatomic, strong) Counter *count;
+@property (weak) NSTimer *repeatingTimer;
+@property (strong, nonatomic) NSDictionary *userInfo;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
 
-static const double CONF_DIST_STUDIO = 4.0;
+static const double CONF_DIST_STUDIO = 1.5;
+static const double CONF_DIST_STUDIO_BLUE = 5.0;
 static const double CONF_DIST_BIGRED = 4.0;
-static const double CONF_DIST_MUM = 1.5;
-static const double CONF_DIST_PADDINGTON = 1.5;
-static const double CONF_DIST_FOZZIE = 5.0;
-static const double CONF_DIST_BARON = 1.5;
-static const double CONF_DIST_BEARHUG = 1.5;
+static const double CONF_DIST_MUM = 1.25;
+static const double CONF_DIST_PADDINGTON = 1.25;
+static const double CONF_DIST_FOZZIE = 2.0;
+static const double CONF_DIST_BARON = 1.25;
+static const double CONF_DIST_BEARHUG = 1.25;
 static const double CONF_DIST_TOUCHDOWN = 4.0;
 
-static const double AMB_DIST_STUDIO = 6.0;
+static const double AMB_DIST_STUDIO = 2.5;
+static const double AMB_DIST_STUDIO_BLUE = 7.0;
 static const double AMB_DIST_BIGRED = 6.0;
-static const double AMB_DIST_MUM = 2.5;
-static const double AMB_DIST_PADDINGTON = 2.5;
-static const double AMB_DIST_FOZZIE = 6.0;
-static const double AMB_DIST_BARON = 2.5;
-static const double AMB_DIST_BEARHUG = 2.5;
+static const double AMB_DIST_MUM = 2.25;
+static const double AMB_DIST_PADDINGTON = 2.25;
+static const double AMB_DIST_FOZZIE = 3.5;
+static const double AMB_DIST_BARON = 2.25;
+static const double AMB_DIST_BEARHUG = 2.25;
 static const double AMB_DIST_TOUCHDOWN = 6.0;
 
 
@@ -67,14 +72,13 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-
     self.title = @"Beacons";
-
     [self.tableView registerClass:[ESTTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
     self.historyQueue = [[NSMutableArray alloc] init];
     self.lastSent = [[NSNumber alloc] initWithInt:0];
-    self.csrf = [self CSRFTokenFromURL:@"http://TODO"];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    //self.csrf = [self CSRFTokenFromURL:@"http://TODO"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,7 +87,8 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
     
     self.beaconManager = [[ESTBeaconManager alloc] init];
     self.beaconManager.delegate = self;
-    
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    [self.locationManager startUpdatingLocation];
     /*
      * Creates sample region object (you can additionaly pass major / minor values).
      *
@@ -93,7 +98,8 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
     self.region = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID
                                                       identifier:@"EstimoteSampleRegion"];
     [self startRangingBeacons];
-
+    BackgroundTask * bgTask =[[BackgroundTask alloc] init];
+    [bgTask startBackgroundTasks:2 target:self selector:@selector(updateStatus:)];
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -118,21 +124,43 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
     return nil;
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+
+- (IBAction)startRepeatingTimer {
+    // Cancel a preexisting timer.
+    [self.repeatingTimer invalidate];
     
-    if ([keyPath isEqualToString:@"count"]) {
-        NSLog(@"The name of the child was changed.");
-        NSLog(@"%@", change);
-    }
-    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                      target:self selector:@selector(updateStatus:)
+                                                    userInfo:[self userInfo] repeats:YES];
+    self.repeatingTimer = timer;
 }
 
--(void)startRangingBeaconsBG:(void (^)(UIBackgroundFetchResult))completionHandler
+- (IBAction)stopRepeatingTimer {
+    [self.repeatingTimer invalidate];
+    self.repeatingTimer = nil;
+}
+
+-(void)stopRangingBeacons
 {
-    self.count = [[Counter alloc] init];
-    [self.count addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-    [self startRangingBeacons];
-    
+    NSLog(@"from appdelegate's performFetchWithCompletionHandler");
+    [self.beaconManager stopRangingBeaconsInRegion:self.region];
+}
+
+-(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    //[self startRepeatingTimer];
+    NSLog(@"started timer");
+    [self.beaconManager stopRangingBeaconsInRegion:self.region];
+    NSLog(@"stopped range beacons");
+    [self.beaconManager startRangingBeaconsInRegion:self.region];
+    NSLog(@"ranged beacons");
+    completionHandler(UIBackgroundFetchResultNewData);
+    //NSLog(@"stopping the timer now");
+    //[self stopRepeatingTimer];
+}
+
+- (void)updateStatus:(NSTimer*)theTimer {
+    [self.beaconManager stopRangingBeaconsInRegion:self.region];
+    [self.beaconManager startRangingBeaconsInRegion:self.region];
 }
 
 -(void)startRangingBeacons
@@ -218,6 +246,10 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
                     confDist = CONF_DIST_STUDIO;
                     ambDist = AMB_DIST_STUDIO;
                     break;
+                case 30299:
+                    confDist = CONF_DIST_STUDIO_BLUE;
+                    ambDist = AMB_DIST_STUDIO_BLUE;
+                    break;
                 case 30201:
                     confDist = CONF_DIST_BIGRED;
                     ambDist = AMB_DIST_BIGRED;
@@ -249,18 +281,20 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
                 default:
                     break;
             }
-            if (dist > 0 && dist < confDist) {
-                numConfBeacons += 1;
-                thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist/confDist], @"distRatio", nil];
-                [confBeacons addObject:thisBeacon];
-            } else if (dist >= confDist && dist < ambDist) {
-                numAmbBeacons += 1;
-                thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist/confDist], @"distRatio", nil];
-                [ambBeacons addObject:thisBeacon];
-            } else if (dist >= ambDist) {
-                numFarBeacons += 1;
-                thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist], @"dist", nil];
-                [farBeacons addObject:thisBeacon];
+            if (confDist > 0 && dist > 0) {
+                if (dist < confDist) {
+                    numConfBeacons += 1;
+                    thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist/confDist], @"distRatio", nil];
+                    [confBeacons addObject:thisBeacon];
+                } else if (dist >= confDist && dist < ambDist) {
+                    numAmbBeacons += 1;
+                    thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist/confDist], @"distRatio", nil];
+                    [ambBeacons addObject:thisBeacon];
+                } else if (dist >= ambDist) {
+                    numFarBeacons += 1;
+                    thisBeacon = [NSDictionary dictionaryWithObjectsAndKeys: beacon, @"beacon", [NSNumber numberWithDouble:dist], @"dist", nil];
+                    [farBeacons addObject:thisBeacon];
+                }
             }
         }
         NSSortDescriptor *distDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distRatio" ascending:YES];
@@ -285,6 +319,9 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
                     sortDescriptors = [NSArray arrayWithObject:distDescriptor];
                     sortedArray = [farBeacons sortedArrayUsingDescriptors:sortDescriptors];
                     [self addToQueue:[[farBeacons objectAtIndex:0] objectForKey:@"beacon"] toQueue:self.historyQueue];
+                } else {
+                    self.nullBeacon = [[ESTBeacon alloc] init];
+                    [self addToQueue:self.nullBeacon toQueue:self.historyQueue];
                 }
             }
         }
@@ -296,8 +333,11 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
 
 - (void) addToQueue: (ESTBeacon*) beacon toQueue: (NSMutableArray *) queue
 {
-    [queue addObject:beacon.major];
-    [self.count setValue:[NSNumber numberWithInteger:[[self.count valueForKey:@"count"] integerValue] + 1] forKey:@"count"];
+    if (beacon.major) {
+        [queue addObject:beacon.major];
+    } else {
+        [queue addObject:[NSNumber numberWithInt:0]];
+    }
 
     if ([queue count] > 10) {
         [queue removeObjectAtIndex:0];
@@ -376,7 +416,10 @@ static const double AMB_DIST_TOUCHDOWN = 6.0;
     switch (beacon.major.intValue) {
             
         case 30200:
-            roomName = @"Studio";
+            roomName = @"Studio Yellow";
+            break;
+        case 30299:
+            roomName = @"Studio Blue";
             break;
         case 30201:
             roomName = @"Big Red";

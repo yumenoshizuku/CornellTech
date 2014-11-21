@@ -20,8 +20,10 @@ typedef enum : int
 /*
  * Lists all Estimote beacons in range and returns selected beacon.
  */
-@interface ESTBeaconTableVC : UITableViewController <ESTBeaconManagerDelegate>
+@interface ESTBeaconTableVC : UITableViewController <ESTBeaconManagerDelegate, CLLocationManagerDelegate>
 
-- (void)startRangingBeaconsBG:(void (^)(UIBackgroundFetchResult))completionHandler;;
+- (void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+- (void)startRangingBeacons;
+- (void)stopRangingBeacons;
 
 @end
