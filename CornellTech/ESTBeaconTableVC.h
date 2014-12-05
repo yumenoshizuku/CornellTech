@@ -10,12 +10,12 @@
 #import "ESTBeacon.h"
 #import "ESTBeaconManager.h"
 
-typedef enum : int
-{
-    ESTScanTypeBluetooth,
-    ESTScanTypeBeacon
-    
-} ESTScanType;
+//typedef enum : int
+//{
+//    ESTScanTypeBluetooth,
+//    ESTScanTypeBeacon
+//    
+//} ESTScanType;
 
 /*
  * Lists all Estimote beacons in range and returns selected beacon.

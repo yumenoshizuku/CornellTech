@@ -45,16 +45,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-    NSLog(@"background");
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    ESTBeaconTableVC *viewController = navigationController.viewControllers[1];
-    [viewController stopRangingBeacons];
-    [viewController startRangingBeacons];
-    [viewController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result) {
-        completionHandler(result);
-    }];
-}
+//- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+//    NSLog(@"background");
+//    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+//    ESTBeaconTableVC *viewController = navigationController.viewControllers[0];
+    //[viewController stopRangingBeacons];
+    //[viewController startRangingBeacons];
+    //[viewController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result) { completionHandler(result); }];
+//}
 
 
 - (BOOL)application: (UIApplication *)application

@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Fanxing Meng. All rights reserved.
 //
 
-#import "RoomLaterTableViewController.h"
 #define kDatePickerTag 1
-#define kAttendeesTag 2
+
+#import "RoomLaterTableViewController.h"
+#import "RoomsTableViewController.h"
 
 
 static NSString *kDateCellID = @"dateCell";
-static NSString *kAttendeesCellID = @"attendeesCell";
 static NSString *kDatePickerCellID = @"datePickerCell";
 
 @interface RoomLaterTableViewController ()
@@ -24,6 +24,8 @@ static NSString *kDatePickerCellID = @"datePickerCell";
 @property (strong, nonatomic) NSIndexPath *datePickerIndexPath;
 @property (assign) NSInteger pickerCellRowHeight;
 
+@property (strong, nonatomic) NSDate *startTime;
+@property (strong, nonatomic) NSDate *endTime;
 - (IBAction)dateChanged:(UIDatePicker *)sender;
 
 @end
@@ -33,10 +35,9 @@ static NSString *kDatePickerCellID = @"datePickerCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.startTime = [[NSDate alloc] init];
+    self.endTime = [[NSDate alloc] init];
     UITableViewCell *pickerViewCellToCheck = [self.tableView dequeueReusableCellWithIdentifier:kDatePickerCellID];
-    self.pickerCellRowHeight = 164;
-    UITableViewCell *attendeesCellToCheck = [self.tableView dequeueReusableCellWithIdentifier:kAttendeesCellID];
     self.pickerCellRowHeight = 164;
     //NSLog(@"%ld", self.pickerCellRowHeight);
     [self createDateFormatter];
@@ -132,7 +133,7 @@ static NSString *kDatePickerCellID = @"datePickerCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if (section == 0) {
-        NSInteger numberOfRows = 3;
+        NSInteger numberOfRows = 2;
         if ([self datePickerIsShown]){
             numberOfRows++;
         }
@@ -147,8 +148,10 @@ static NSString *kDatePickerCellID = @"datePickerCell";
     UITableViewCell *cell;
     if (indexPath.section == 0) {
         if ([self datePickerIsShown]){
-            if (self.datePickerIndexPath.row == indexPath.row) {                NSDate *currentTime = [NSDate date];
-                NSString *resultString = [self.dateFormatter stringFromDate: currentTime];                switch (indexPath.row -1) {
+            if (self.datePickerIndexPath.row == indexPath.row) {
+                NSDate *currentTime = [NSDate date];
+                NSString *resultString = [self.dateFormatter stringFromDate: currentTime];
+                switch (indexPath.row -1) {
                     case 0:
                         cell = [self createPickerCell:currentTime];
                         break;
@@ -158,9 +161,6 @@ static NSString *kDatePickerCellID = @"datePickerCell";
                     default:
                         break;
                 };
-            } else {
-                cell.textLabel.text = @"Attendees";
-                cell.detailTextLabel.text = @"1";
             }
         } else {
             switch (indexPath.row) {
@@ -169,14 +169,6 @@ static NSString *kDatePickerCellID = @"datePickerCell";
                     break;
                 case 1:
                     cell = [self createDateCell:@"End"];
-                    break;
-                case 2:
-                    cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
-                    if (cell == NULL){
-                        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-                    }
-                    cell.textLabel.text = @"Attendees";
-                    cell.detailTextLabel.text = @"1";
                     break;
                 default:
                     break;
@@ -217,7 +209,85 @@ static NSString *kDatePickerCellID = @"datePickerCell";
                 break;
         }
     } else {
-        ;
+        [self.tableView beginUpdates];
+        if ([self datePickerIsShown]) {
+            
+            [self hideExistingPicker];
+        }
+        [self.tableView endUpdates];
+        NSString *startTime;
+        NSString *endTime;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm':00'ZZZ"];
+        startTime = [dateFormatter stringFromDate:self.startTime];
+        endTime = [dateFormatter stringFromDate:self.endTime];
+        NSString *bodyData = [NSString stringWithFormat:@"startTime=%@&endTime=%@&occupancy=1", startTime, endTime];
+        //&csrfmiddlewaretoken=%@
+        NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://54.200.176.236/room_booking/available"]];
+        NSLog(@"%@", bodyData);
+        [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        
+        // Designate the request a POST request and specify its body data
+        [postRequest setHTTPMethod:@"POST"];
+        [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
+        
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+         {
+             NSLog(@"%@", response);
+             NSLog(@"%@", error);
+             //
+             //
+             //
+             //
+             //if (error) {
+            if (!error) {
+                 NSMutableDictionary *room_list = [[NSMutableDictionary alloc] init];
+                 room_list = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                 //
+                 //
+//                 NSMutableArray *fake = [[NSMutableArray alloc] init];
+//                 NSDictionary *fd = [[NSDictionary alloc] initWithObjectsAndKeys:@"Big Red", @"name", @"30201", @"id", @"30", @"occupancy", nil];
+//                 [fake addObject:fd];
+//                 NSMutableDictionary *room_list = [[NSMutableDictionary alloc] initWithObjectsAndKeys:fake, @"rooms", nil];
+                 //
+                 //
+                 if ([room_list count] == 0) {
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Result Found"
+                                                                     message:@"All rooms are booked for this time slot."
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"OK"
+                                                           otherButtonTitles:nil];
+                     [alert show];
+                 } else {
+                     dispatch_sync(dispatch_get_main_queue(), ^{
+                         RoomsTableViewController *roomsTVC = [[RoomsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                         
+                         NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                         df.dateStyle = kCFDateFormatterShortStyle;
+                         
+                         roomsTVC.heading = [@"Rooms available during " stringByAppendingString: [[[df stringFromDate:self.startTime] stringByAppendingString:@" - "] stringByAppendingString:[df stringFromDate:self.endTime]]];
+                         roomsTVC.room_list = room_list;
+                         roomsTVC.startTime = startTime;
+                         roomsTVC.endTime = endTime;
+                         [self.navigationController pushViewController:roomsTVC animated:YES];
+                     });
+                 }
+             }
+             else {
+                 dispatch_sync(dispatch_get_main_queue(), ^{
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network error"
+                                                                     message:@"Network error."
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"OK"
+                                                           otherButtonTitles:nil];
+                     [alert show];
+                 });
+             }
+         }];
+
+        
     }
 
 }
@@ -236,6 +306,11 @@ static NSString *kDatePickerCellID = @"datePickerCell";
     //NSLog(sender.date);
     
     cell.detailTextLabel.text = [self.dateFormatter stringFromDate:sender.date];
+    if (parentCellIndexPath.row == 0) {
+        self.startTime = sender.date;
+    } else {
+        self.endTime = sender.date;
+    }
 }
 
 #pragma mark - VCAddPersonDelegate methods

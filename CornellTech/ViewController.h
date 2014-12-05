@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ESTBeacon.h"
+#import "ESTBeaconManager.h"
 #import <AddressBook/AddressBook.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Foundation/Foundation.h>
@@ -19,9 +21,24 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 
 #import <GooglePlus/GooglePlus.h>
-@interface ViewController : UIViewController <GPPSignInDelegate>
+
+
+typedef enum : int
+{
+    ESTScanTypeBluetooth,
+    ESTScanTypeBeacon
+    
+} ESTScanType;
+
+
+@interface ViewController : UIViewController <GPPSignInDelegate, ESTBeaconManagerDelegate, CLLocationManagerDelegate>
 
 @property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton;
+
+- (void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+- (void)startRangingBeacons;
+- (void)stopRangingBeacons;
+
 @end
 
 @class GPPSignInButton;
