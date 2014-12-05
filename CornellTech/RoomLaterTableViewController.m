@@ -241,12 +241,12 @@ static NSString *kDatePickerCellID = @"datePickerCell";
              //
              //
              //
-             //if (error) {
             if (!error) {
                  NSMutableDictionary *room_list = [[NSMutableDictionary alloc] init];
                  room_list = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                  //
-                 //
+                //
+//                if (error) {
 //                 NSMutableArray *fake = [[NSMutableArray alloc] init];
 //                 NSDictionary *fd = [[NSDictionary alloc] initWithObjectsAndKeys:@"Big Red", @"name", @"30201", @"id", @"30", @"occupancy", nil];
 //                 [fake addObject:fd];

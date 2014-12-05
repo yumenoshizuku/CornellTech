@@ -9,9 +9,6 @@
 #import "ViewController.h"
 #import "RoomLaterTableViewController.h"
 #import "RoomNowTableViewController.h"
-#import "ESTBeaconTableVC.h"
-#import "ESTBeaconManager.h"
-#import "ESTViewController.h"
 #import "BackgroundTask.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
